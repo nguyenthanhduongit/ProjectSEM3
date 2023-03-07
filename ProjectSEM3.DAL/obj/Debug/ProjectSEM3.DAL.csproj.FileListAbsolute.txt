@@ -1,0 +1,12 @@
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DAL\bin\Debug\ProjectSEM3.DAL.dll.config
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DAL\bin\Debug\ProjectSEM3.DAL.dll
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DAL\bin\Debug\ProjectSEM3.DAL.pdb
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DAL\bin\Debug\EntityFramework.dll
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DAL\bin\Debug\EntityFramework.xml
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DAL\obj\Debug\ProjectSEM3.DAL.csproj.AssemblyReference.cache
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DAL\obj\Debug\ProjectSEM3.DAL.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DAL\obj\Debug\ProjectSEM3.DAL.csproj.CopyComplete
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DAL\obj\Debug\ProjectSEM3.DAL.dll
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DAL\obj\Debug\ProjectSEM3.DAL.pdb

@@ -1,0 +1,15 @@
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DLL\bin\Debug\ProjectSEM3.DLL.dll.config
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DLL\bin\Debug\ProjectSEM3.DLL.dll
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DLL\bin\Debug\ProjectSEM3.DLL.pdb
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DLL\bin\Debug\EntityFramework.dll
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DLL\bin\Debug\ProjectSEM3.DAL.dll
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DLL\bin\Debug\ProjectSEM3.DAL.pdb
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DLL\bin\Debug\ProjectSEM3.DAL.dll.config
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DLL\bin\Debug\EntityFramework.xml
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DLL\obj\Debug\ProjectSEM3.DLL.csproj.AssemblyReference.cache
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DLL\obj\Debug\ProjectSEM3.DLL.csproj.CoreCompileInputs.cache
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DLL\obj\Debug\ProjectSEM3.DLL.csproj.CopyComplete
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DLL\obj\Debug\ProjectSEM3.DLL.dll
+C:\Users\nguye\Desktop\ProjectSEM3\ProjectSEM3.DLL\obj\Debug\ProjectSEM3.DLL.pdb
