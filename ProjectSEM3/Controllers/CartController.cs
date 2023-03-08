@@ -3,6 +3,7 @@ using ProjectSEM3.DAL.Models.Enum.EnumCart;
 using ProjectSEM3.Dto;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -57,7 +58,7 @@ namespace ProjectSEM3.Controllers
         {
 
            var query = dbcontext.Bills.Where(x => id.Contains(x.Id));
-            
+            // to muon update cai list nay 
             var data = from b in query
                        select new Bill
                        {
@@ -69,8 +70,12 @@ namespace ProjectSEM3.Controllers
                            TotalPrice = b.TotalPrice,
                            Status = StatusCart.StatusBill
                        };
-            
-            dbcontext.SaveChanges();
+           
+          
+                dbcontext.Entry(data).State = EntityState.Modified; 
+                dbcontext.SaveChanges();
+          
+           
             
             return View();
         }
