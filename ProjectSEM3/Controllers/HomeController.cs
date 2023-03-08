@@ -36,13 +36,18 @@ namespace ProjectSEM3.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Login(string Username , string password)
+        public ActionResult Login(string Username , string Password)
         {
             if(ModelState.IsValid)
             {
                var query = dbcontext.Customers.FirstOrDefault(x => x.UserName.Trim().ToLower().Contains(Username.Trim().ToLower()));
                 if (query == null) return View();
-                if (query.password == password) return View("index");
+                if (query.Password == Password) {
+                    Response.Cookies["UserName"].Value = Username;
+                    Response.Cookies["Id"].Value = query.Id.ToString();
+                    Response.Cookies["user"].Expires = DateTime.Now.AddMinutes(5);
+                    return RedirectToAction("Index");
+                } 
 
             }
             return View();

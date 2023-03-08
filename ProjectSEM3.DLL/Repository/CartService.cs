@@ -20,8 +20,9 @@ namespace ProjectSEM3.DLL.Repository
        public List<Bill> ListCart(object session)
         {
            
-           var query = dbcontext.Bills.Where(x => x.Status == StatusCart.StatusCart && x.CustomerId == );
+           var query = dbcontext.Bills.Where(x => x.Status == StatusCart.StatusCart);
             query.Where(x => x.Created == DateTime.Now.Date);
+            return query.ToList();
             
         }
     }
