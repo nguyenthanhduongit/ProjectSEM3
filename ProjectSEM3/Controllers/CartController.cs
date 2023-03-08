@@ -1,4 +1,5 @@
 ﻿using ProjectSEM3.DAL.Models.Entity;
+using ProjectSEM3.DAL.Models.Enum.EnumCart;
 using ProjectSEM3.Dto;
 using System;
 using System.Collections.Generic;
@@ -48,9 +49,30 @@ namespace ProjectSEM3.Controllers
                             TotalPrice = b.TotalPrice
                         };
             var data = query.Where(x => x.CustomerId == customers.Id && x.Created == DateTime.Now.Date);
-            var list = data.ToList();    
+            var list = data.Where(x=> x.Status == StatusCart.StatusCart).ToList();    
             return View(list);
 
+        }
+        public  ActionResult UpdateStatusCart(List<Guid> id)
+        {
+
+           var query = dbcontext.Bills.Where(x => id.Contains(x.Id));
+            
+            var data = from b in query
+                       select new Bill
+                       {
+                           Created = b.Created,
+                           CustomerId = b.CustomerId,
+                           Id = b.Id,
+                           ProductId = b.Id,
+                           Quantity = b.Quantity,
+                           TotalPrice = b.TotalPrice,
+                           Status = StatusCart.StatusBill
+                       };
+            
+            dbcontext.SaveChanges();
+            
+            return View();
         }
     }
 }

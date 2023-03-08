@@ -133,6 +133,8 @@
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Dto\ListCartDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -2305,9 +2307,9 @@
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Uploand\" />
     <Folder Include="Models\" />
-    <Folder Include="NewFolder1\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Cart\" />
+    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
