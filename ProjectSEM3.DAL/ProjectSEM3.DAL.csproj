@@ -58,6 +58,7 @@
     <Compile Include="Models\Entity\Migrations.cs" />
     <Compile Include="Models\Entity\Product.cs" />
     <Compile Include="Models\Entity\User.cs" />
+    <Compile Include="Models\Enum\EnumCart.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

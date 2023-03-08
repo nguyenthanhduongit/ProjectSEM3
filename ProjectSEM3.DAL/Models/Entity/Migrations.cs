@@ -19,5 +19,6 @@ namespace ProjectSEM3.DAL.Models.Entity
         public virtual DbSet<Customer> Customers { get; set; }
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<User> Users { get; set; }
+       
     }
 }
