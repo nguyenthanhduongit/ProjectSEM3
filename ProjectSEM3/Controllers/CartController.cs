@@ -22,13 +22,7 @@ namespace ProjectSEM3.Controllers
         {
            return View();
         }
-        [HttpPost]
-        public ActionResult Login(Customer customer)
-        {
-            var section = Session["Customer"] = customer;
-            return View();
-           
-        }
+       // danh sach Cart
         public ActionResult ListCart()
         {
             var username = Response.Cookies["UserName"].Value;
@@ -54,6 +48,7 @@ namespace ProjectSEM3.Controllers
             return View(list);
 
         }
+        // update Cart qua Bill ADMIN
         public  ActionResult UpdateStatusCart(List<Guid> id)
         {
 

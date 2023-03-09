@@ -20,10 +20,13 @@ namespace ProjectSEM3.Controllers
         {
             return View();
         }
-        public ActionResult Detail()
+        public ActionResult Detail(Guid id)
         {
-            return View();
+          var data =  dbcontext.Products.Find(id);
+
+            return View(data);
         }
+        
         [HttpPost]
         public ActionResult AddCart(Bill bill)
         {
