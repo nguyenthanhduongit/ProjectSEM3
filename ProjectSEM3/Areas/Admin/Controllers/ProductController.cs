@@ -1,13 +1,14 @@
 ﻿using ProjectSEM3.DAL.Models.Entity;
 using ProjectSEM3.DLL.IRepository;
 using ProjectSEM3.DLL.Repository;
+using ProjectSEM3.Dto;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-
+using PagedList;
 namespace ProjectSEM3.Areas.Admin.Controllers
 {
     public class ProductController : Controller
@@ -18,9 +19,17 @@ namespace ProjectSEM3.Areas.Admin.Controllers
             dbcontext = new Migrations();
         }
         // GET: Admin/Product
-        public ActionResult Index()
+        public ActionResult Index(SearchProductDTO param, int page = 1)
         {
-            return View();
+            int pagesize = 1;
+          var data =  dbcontext.Products.AsEnumerable();
+            if (!String.IsNullOrEmpty(param.Name))
+            {
+                data = data.Where(x => x.Name.Trim().ToLower().Contains(param.Name.Trim().ToLower()));
+            }
+            ViewBag.totalPage = Math.Ceiling((decimal)data.Count() / (decimal)pagesize);
+          
+            return View(data.Skip((page - 1) * pagesize).Take(pagesize).ToList());
         }
         public ActionResult Create()
         {
