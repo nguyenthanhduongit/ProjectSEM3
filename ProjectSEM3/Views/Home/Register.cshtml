@@ -7,11 +7,8 @@
     .form-login {
         padding: 50px;
     }
-    .padd15 {
-        padding-top: 15px;
-    }
-    .btn-register{
-        padding: 11px 22px;
+    .padd15{
+        padding-top:15px;
     }
 </style>
 
@@ -23,19 +20,17 @@
 
         @Html.AntiForgeryToken()
         <form>
-            <h2 style="text-align:center">Login</h2>
+            <h2 style="text-align:center">Register</h2>
             <div class="form-group padd15">
                 <label for="exampleInputEmail1">Email address</label>
                 @Html.TextBoxFor(m => m.UserName, "", new { @class = "form-control", @placeholder = "UserName" })
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
             <div class="form-group padd15">
                 <label for="exampleInputPassword1">Password</label>
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
             </div>
-            
+           
             <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="button" class="btn btn-info btn-register"><a href="/Home/Register">Register</a></button>
         </form>
 
         <!-- Email input -->

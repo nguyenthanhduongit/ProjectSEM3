@@ -52,5 +52,9 @@ namespace ProjectSEM3.Controllers
             }
             return View();
         }
+        public ActionResult Register()
+        {
+            return View();
+        }
     }
 }

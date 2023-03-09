@@ -17,15 +17,16 @@ namespace ProjectSEM3.Controllers
         {
             dbcontext = new Migrations();
         }
-        // GET: Cart
-        public ActionResult Index()
-        {
-           return View();
-        }
+        
+     
        // danh sach Cart
         public ActionResult ListCart()
         {
             var username = Response.Cookies["UserName"].Value;
+            if (username == null)
+            {
+                return RedirectToRoute(new { action = "Login", controller = "Home" });
+            }
             var customers = dbcontext.Customers.FirstOrDefault(x => x.UserName == username);
             
             var query = from b in dbcontext.Bills
@@ -43,7 +44,7 @@ namespace ProjectSEM3.Controllers
 
                             TotalPrice = b.TotalPrice
                         };
-            var data = query.Where(x => x.CustomerId == customers.Id && x.Created == DateTime.Now.Date);
+            var data = query.Where(x => x.CustomerId == customers.Id && x.Created == DateTime.Now);
             var list = data.Where(x=> x.Status == StatusCart.StatusCart).ToList();    
             return View(list);
 

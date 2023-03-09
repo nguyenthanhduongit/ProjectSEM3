@@ -48,7 +48,7 @@ namespace ProjectSEM3.Areas.Admin.Controllers
              
                     if (data == true)
                     {
-                        return View("Index");
+                        return RedirectToAction("Index");
                     }
 
                 }
