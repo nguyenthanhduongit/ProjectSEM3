@@ -27,9 +27,9 @@ namespace ProjectSEM3.Areas.Admin.Controllers
             {
                 data = data.Where(x => x.Name.Trim().ToLower().Contains(param.Name.Trim().ToLower()));
             }
-            ViewBag.totalPage = Math.Ceiling((decimal)data.Count() / (decimal)pagesize);
+            /*ViewBag.totalPage = Math.Ceiling((decimal)data.Count() / (decimal)pagesize);*/
           
-            return View(data.Skip((page - 1) * pagesize).Take(pagesize).ToList());
+            return View(data);
         }
         public ActionResult Create()
         {
@@ -38,29 +38,31 @@ namespace ProjectSEM3.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(HttpPostedFileBase Images,Product product)
         {
-            if (ModelState.IsValid)
-            {
+            
                 try
                 {
-
+                if (ModelState.IsValid)
+                {
                     product.Images = Images.FileName;
                     product.Id = Guid.NewGuid();
-                    var data = dbcontext.Products.Add(product);
 
+                    var data = dbcontext.Products.Add(product);
+                    dbcontext.SaveChanges();
                     if (Images != null)
                     {
                         string path = Path.Combine(Server.MapPath("~/Areas/Uploand"), Path.GetFileName(Images.FileName));
                         Images.SaveAs(path);
 
                     }
-
-
+                    
                     if (data != null)
                     {
-                        return View("Index");
+                        
+                        return  RedirectToAction("Index");
                     }
-
+                     
                 }
+             }
                 catch (Exception e)
                 {
 
@@ -68,7 +70,7 @@ namespace ProjectSEM3.Areas.Admin.Controllers
                 }
 
 
-            }
+           
             return View();
         }
     }

@@ -14,24 +14,35 @@
 
 <div class="container form-login">
 
-    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    @using (Html.BeginForm("Register", "Home", FormMethod.Post))
     {
 
 
         @Html.AntiForgeryToken()
-        <form>
-            <h2 style="text-align:center">Register</h2>
-            <div class="form-group padd15">
-                <label for="exampleInputEmail1">Email address</label>
-                @Html.TextBoxFor(m => m.UserName, "", new { @class = "form-control", @placeholder = "UserName" })
-            </div>
-            <div class="form-group padd15">
-                <label for="exampleInputPassword1">Password</label>
-                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
-            </div>
-           
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+    <form>
+        <h2 style="text-align:center">Register</h2>
+        <div class="form-group padd15">
+            <label for="exampleInputEmail1">UserName</label>
+            @Html.TextBoxFor(m => m.UserName, "", new { @class = "form-control", @placeholder = "UserName" })
+        </div>
+        <div class="form-group padd15">
+            <label for="exampleInputPassword1">Password</label>
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+        </div>
+        <div class="form-group padd15">
+            <label for="exampleInputEmail1">Email address</label>
+            @Html.TextBoxFor(m => m.Address, "", new { @class = "form-control", @placeholder = "Address" })
+        </div>
+        <div class="form-group padd15">
+            <label for="exampleInputEmail1">Name</label>
+            @Html.TextBoxFor(m => m.Name, "", new { @class = "form-control", @placeholder = "Name" })
+        </div>
+        <div class="form-group padd15">
+            <label for="exampleInputEmail1">Phone</label>
+            @Html.TextBoxFor(m => m.Phone, "", new { @class = "form-control", @placeholder = "Phone" })
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
 
         <!-- Email input -->
         <!--<div class="form-outline mb-4">

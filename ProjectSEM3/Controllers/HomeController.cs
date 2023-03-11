@@ -43,9 +43,7 @@ namespace ProjectSEM3.Controllers
                var query = dbcontext.Customers.FirstOrDefault(x => x.UserName.Trim().ToLower().Contains(Username.Trim().ToLower()));
                 if (query == null) return View();
                 if (query.Password == Password) {
-                    Response.Cookies["UserName"].Value = Username;
-                    Response.Cookies["Id"].Value = query.Id.ToString();
-                    Response.Cookies["user"].Expires = DateTime.Now.AddMinutes(5);
+                    Session["UserName"] = Username;
                     return RedirectToAction("Index");
                 } 
 
@@ -54,6 +52,18 @@ namespace ProjectSEM3.Controllers
         }
         public ActionResult Register()
         {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Register(Customer customer)
+        {
+            if (ModelState.IsValid)
+            {
+                customer.Id = Guid.NewGuid();
+                dbcontext.Customers.Add(customer);
+                dbcontext.SaveChanges();
+                return RedirectToAction("Login");
+            }
             return View();
         }
     }
