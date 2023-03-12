@@ -1,4 +1,5 @@
 ﻿using ProjectSEM3.DAL.Models.Entity;
+using ProjectSEM3.DAL.Models.Enum.EnumCart;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -18,25 +19,42 @@ namespace ProjectSEM3.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            return View();
+          var list =  dbcontext.Products.ToList();
+            return View(list);
         }
         public ActionResult Detail(Guid id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
           var data =  dbcontext.Products.Find(id);
 
             return View(data);
         }
         
         [HttpPost]
-        public ActionResult AddCart(Bill bill)
+        public ActionResult AddCart(Guid id, int quantity)
         {
-            var username = Response.Cookies["UserName"].Value;
-            var customers = dbcontext.Customers.FirstOrDefault(x => x.UserName == username);
+            Bill bill = new Bill();
+            var user = Session["UserName"];
+            if (user == null)
+            {
+                return RedirectToRoute(new { action = "Login", controller = "Home" });
+            }
+            var username = user.ToString();
+            var customers = dbcontext.Customers.FirstOrDefault(x => x.UserName.ToLower().Trim() == username.ToLower().Trim());
+            var product = dbcontext.Products.Find(id);
             bill.CustomerId = customers.Id;
+            bill.ProductId = id;
+            bill.Created = DateTime.Now;
+            bill.Status = StatusCart.StatusCart;
+            bill.Id = Guid.NewGuid();
+            bill.Quantity = quantity;
             dbcontext.Bills.Add(bill);
             dbcontext.SaveChanges();
-            return RedirectToAction("Thêm thành công");
-            
+            return RedirectToAction("Index");
+
         }
     }
 }

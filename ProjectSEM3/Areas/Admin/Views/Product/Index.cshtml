@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Description)
+                @Html.Raw(item.Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Images)
@@ -60,13 +60,6 @@
     }
 
 </table>
-<div>
-    <ul>
-        @for (int i = 0; i < ViewBag.totalPage; i++)
-        {
-            <li><a href="@Url.Action("Index", new { page = i})">@i</a></li>
-        }
 
-    </ul>
 </div>
 

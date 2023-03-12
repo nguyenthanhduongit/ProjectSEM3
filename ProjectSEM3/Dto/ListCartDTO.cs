@@ -10,8 +10,9 @@ namespace ProjectSEM3.Dto
     public class ListCartDTO
     {
         public Guid Id { get; set; }
-
+        public string Images { get; set; }
         public double TotalPrice { get; set; }
+        public double Price { get; set; }
         public int Quantity { get; set; }
         public Guid ProductId { get; set; }
         public string ProductName { get; set; }
