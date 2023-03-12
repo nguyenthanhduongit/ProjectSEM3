@@ -1,4 +1,5 @@
 ﻿using ProjectSEM3.DAL.Models.Entity;
+using ProjectSEM3.DAL.Models.Enum.EnumCart;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,10 +8,10 @@ using System.Web.Mvc;
 
 namespace ProjectSEM3.Controllers
 {
-    public class HomeController : Controller
+    public  class HomeController : Controller
     {
         private static Migrations dbcontext;
-        public HomeController()
+        public  HomeController()
         {
             dbcontext = new Migrations();
         }
@@ -66,10 +67,33 @@ namespace ProjectSEM3.Controllers
             }
             return View();
         }
-        public List<Banned>  GetlistBanned()
+        public static List<Banned>  GetlistBanned()
         {
           var data =  dbcontext.Banneds.ToList();
             return data;
+        }
+        public static List<Product> GetListProduct()
+        {
+            var data = dbcontext.Products.ToList();
+            return data;
+        }
+        public static List<Product> GetStatusProductNew()
+        {
+            var data = dbcontext.Products;
+            var list = data.Where(x => x.StatusProduct == StatusProduct.ProductNew).Take(3)e.ToList();
+            return list;
+        }
+        public static List<Product> GetStatusProductRecently()
+        {
+            var data = dbcontext.Products.ToList();
+            var list = data.Where(x => x.StatusProduct == StatusProduct.ProductRecently).Take(3).ToList();
+            return list;
+        }
+        public static List<Product> GetStatusProductSeller()
+        {
+            var data = dbcontext.Products.ToList();
+            var list = data.Where(x => x.StatusProduct == StatusProduct.ProductSeller).Take(3).ToList();
+            return list;
         }
     }
 }

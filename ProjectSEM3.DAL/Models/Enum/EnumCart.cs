@@ -16,5 +16,11 @@ namespace ProjectSEM3.DAL.Models.Enum
             StatusBill = 1,
             
         }
+        public enum StatusProduct
+        {
+            ProductNew = 0,
+            ProductSeller = 1,
+            ProductRecently = 2,
+        }
     }
 }

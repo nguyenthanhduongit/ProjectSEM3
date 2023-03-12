@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectSEM3.DAL.Models.Enum.EnumCart;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -18,6 +19,6 @@ namespace ProjectSEM3.DAL.Models.Entity
         public string Images { get; set; }
         public double price { get; set; }
         
-
+        public StatusProduct StatusProduct { get; set; }
     }
 }

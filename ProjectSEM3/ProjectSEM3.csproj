@@ -159,6 +159,7 @@
     <Content Include="Areas\Admin\Content\dist\css\alt\adminlte.pages.min.css" />
     <Content Include="Areas\Admin\Content\dist\css\alt\adminlte.plugins.css" />
     <Content Include="Areas\Admin\Content\dist\css\alt\adminlte.plugins.min.css" />
+    <Content Include="Areas\Admin\Content\dist\css\common.css" />
     <Content Include="Areas\Admin\Content\dist\img\AdminLTELogo.png" />
     <Content Include="Areas\Admin\Content\dist\img\avatar.png" />
     <Content Include="Areas\Admin\Content\dist\img\avatar2.png" />
@@ -2496,8 +2497,6 @@
     <Folder Include="Areas\Uploand\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Admin\" />
-    <Folder Include="Views\Cart\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />

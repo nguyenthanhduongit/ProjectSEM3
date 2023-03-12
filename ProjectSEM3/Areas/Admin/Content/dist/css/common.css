@@ -1,0 +1,12 @@
+﻿body {
+}
+.btn-create{
+    color : white !important;
+}
+.fl-rigth{
+    float: right;
+    width: 500px;
+}
+.image-admin{
+    width:200px;
+}

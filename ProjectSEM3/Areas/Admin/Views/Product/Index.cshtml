@@ -5,61 +5,109 @@
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/LayoutAdmin.cshtml";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<!-- Đoạn cần thêm -->
 @using (Html.BeginForm())
 {
-    <p>
+    @*<section class="content">
+        <div class="container-fluid">
+            <h2 class="text-center display-4">Search</h2>
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <form action="simple-results.html">
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>*@
+    @*<p>
         Name: @Html.TextBox("Name") <input type="submit" value="Tìm kiếm" />
-    </p>
+    </p>*@
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>List Products</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Admin/Home">Home</a></li>
+                    <li class="breadcrumb-item active">List Products</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <button class="btn-primary">@Html.ActionLink("Create New", "Create", null, new { @class = "btn-create" })</button>
+                        <div class="input-group fl-rigth">
+                            <input type="search" name="Name" id="Name" class="form-control" placeholder="Type your keywords here">
+                            <div class="input-group-append">
+                                <button type="submit" class="btn btn-default">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+
+                        <table class="table table-bordered table-hover">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Description)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Images)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.price)
+                                </th>
+                                <th>Action</th>
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.Raw(item.Description)
+                                    </td>
+                                    <td>
+                                        <img src="~/Areas/Uploand/@item.Images" class="image-admin" />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.price)
+                                    </td>
+                                    <td>
+                                        <button class="btn-info">@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn-create" })</button> 
+                                        <button class="btn-success"> @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn-create" })</button> 
+                                        <button class="btn-danger">@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn-create" })</button> 
+                                    </td>
+                                </tr>
+                            }
+
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</section>
+
 }
-<!-- Kết thúc -->
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Images)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.price)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.Raw(item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Images)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.price)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
-
-</table>
-
-</div>
-

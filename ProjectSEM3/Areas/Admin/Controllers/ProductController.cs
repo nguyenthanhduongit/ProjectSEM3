@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using PagedList;
+
 namespace ProjectSEM3.Areas.Admin.Controllers
 {
     public class ProductController : Controller
