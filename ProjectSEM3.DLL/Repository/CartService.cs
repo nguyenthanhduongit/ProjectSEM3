@@ -25,5 +25,6 @@ namespace ProjectSEM3.DLL.Repository
             return query.ToList();
             
         }
+       
     }
 }

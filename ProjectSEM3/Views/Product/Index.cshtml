@@ -29,7 +29,9 @@
                         <div class="product-upper">
                             <img src="~/Areas/Uploand/@item.Images" alt="">
                         </div>
-                        <h2><a href="">@item.Name</a></h2>
+                        
+                            
+                            @Html.ActionLink(item.Name, "Detail", new { id = item.Id }) 
                         <div class="product-carousel-price">
                             <ins>@item.price</ins> @*<del>$999.00</del>*@
                         </div>
@@ -38,8 +40,8 @@
                             @using (Html.BeginForm("AddCart", "Product", FormMethod.Post))
                             {
                                 @Html.AntiForgeryToken()
-                                <input type="hidden" id="id" name="id" value="@item.Id"/>
-                                <input type="hidden" name="quantity" id="quantity" value="1"/>
+                                <input type="hidden" id="id" name="id" value="@item.Id" />
+                                <input type="hidden" name="quantity" id="quantity" value="1" />
                                 <button class="add_to_cart_button" data-quantity="1" data-product_sku="" data-productid="" rel="nofollow" type="submit">Add to cart</button>
                             }
                         </div>

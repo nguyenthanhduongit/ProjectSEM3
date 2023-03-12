@@ -26,6 +26,7 @@ namespace ProjectSEM3.Areas.Admin.Controllers
         public ActionResult Create() {
             return View();
         }
+      
         [HttpPost]
         public ActionResult Create(HttpPostedFileBase Images, Banned banned) {
             

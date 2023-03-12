@@ -36,6 +36,7 @@ namespace ProjectSEM3.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Create(HttpPostedFileBase Images,Product product)
         {
             

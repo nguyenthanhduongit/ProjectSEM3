@@ -24,6 +24,10 @@ namespace ProjectSEM3.Controllers
         }
         public ActionResult Detail(Guid id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
           var data =  dbcontext.Products.Find(id);
 
             return View(data);

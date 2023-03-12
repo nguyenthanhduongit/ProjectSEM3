@@ -66,5 +66,10 @@ namespace ProjectSEM3.Controllers
             }
             return View();
         }
+        public List<Banned>  GetlistBanned()
+        {
+          var data =  dbcontext.Banneds.ToList();
+            return data;
+        }
     }
 }

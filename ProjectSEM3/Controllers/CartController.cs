@@ -4,6 +4,7 @@ using ProjectSEM3.Dto;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Drawing;
 using System.Linq;
 using System.Web;
@@ -33,7 +34,7 @@ namespace ProjectSEM3.Controllers
             var bills = dbcontext.Bills.ToList();
             var customers = dbcontext.Customers.FirstOrDefault(x => x.UserName == username);
 
-            var query = from pro in products
+            var join = from pro in products
                         join b in bills
                         on pro.Id equals b.ProductId
                         /*into gr from b in gr.DefaultIfEmpty()*/
@@ -50,8 +51,15 @@ namespace ProjectSEM3.Controllers
                             Images = pro.Images,
                             TotalPrice = /*b.TotalPrice == null ? default :*/ b.TotalPrice,
                         };
-            var data = query.Where(x => x.CustomerId == customers.Id);
-            data = data.Where(x => x.Created.Date == DateTime.Now.Date);
+            var lst = join.ToList();
+            double totalprice = 0;
+            for (int i = 0; i < lst.Count(); i++)
+            {
+                lst[i].TotalPrice = lst[i].Price * lst[i].Quantity;
+            }
+
+            var data = lst.Where(x => x.CustomerId == customers.Id);
+            /*data = data.Where(x => x.Created.Date == DateTime.Now.Date);*/
             
             var list = data.Where(x=> x.Status == StatusCart.StatusCart).ToList();    
             return View(list);
@@ -63,7 +71,7 @@ namespace ProjectSEM3.Controllers
         public  ActionResult UpdateStatusCart(List<Guid> id)
         {
 
-           var query = dbcontext.Bills.Where(x => id.Contains(x.Id));
+           var query = dbcontext.Bills.Where(x => id.Contains(x.Id)).ToList();
             // to muon update cai list nay 
             var data = from b in query
                        select new Bill
@@ -76,14 +84,32 @@ namespace ProjectSEM3.Controllers
                            TotalPrice = b.TotalPrice,
                            Status = StatusCart.StatusBill
                        };
-           
-          
-                dbcontext.Entry(data).State = EntityState.Modified; 
-                dbcontext.SaveChanges();
-          
-           
+           var list = data.ToList();
+            foreach (var item in list)
+            {
+                dbcontext.Bills.AddOrUpdate(item);
+                
+            }
+            dbcontext.SaveChanges();
+            return RedirectToAction("ListCart");
+        }
+        
+        public ActionResult Delete(Guid id)
+        {
+            var data = dbcontext.Bills.Find(id);
+            dbcontext.Bills.Remove(data);
+            dbcontext.SaveChanges();
+            return RedirectToAction("ListCart");
+        }
+        [HttpPost]
+        public ActionResult UpdateQuantity(Guid id, int quantity)
+        {
+           var bill = dbcontext.Bills.Find(id);
+            bill.Quantity = quantity;
             
-            return View();
+            dbcontext.Bills.AddOrUpdate(bill);
+            dbcontext.SaveChanges();
+            return RedirectToAction("ListCart");
         }
     }
 }

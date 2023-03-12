@@ -17,6 +17,7 @@ namespace ProjectSEM3.DAL.Models.Entity
         [Required(ErrorMessage = "Please choose file to upload.")]
         public string Images { get; set; }
         public double price { get; set; }
+        
 
     }
 }
