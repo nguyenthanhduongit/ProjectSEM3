@@ -12,8 +12,6 @@ namespace ProjectSEM3.DAL.Models.Entity
     {
         [Key]
         public Guid Id { get; set; }
-        
-        public double TotalPrice { get; set; }
         public int Quantity { get; set; }
         public Guid ProductId { get; set; }
         public Guid CustomerId { get; set; }

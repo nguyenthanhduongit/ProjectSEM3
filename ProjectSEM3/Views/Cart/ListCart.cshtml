@@ -139,6 +139,7 @@
                                                     <from>
                                                         @foreach (var item1 in Model)
                                                         {
+                                                            <input type="hidden" name="totalPrice" id="totalPrice" value="@item1.TotalPrice" />
                                                             <input type="hidden" name="id" id="id" value="@item1.Id" />
                                                         }
 

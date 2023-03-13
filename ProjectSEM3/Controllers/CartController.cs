@@ -49,10 +49,10 @@ namespace ProjectSEM3.Controllers
                             Quantity = /*b.Quantity == null ? default :*/b.Quantity,
                             Status = b.Status /*== null ? StatusCart.StatusCart : StatusCart.StatusBill*/,
                             Images = pro.Images,
-                            TotalPrice = /*b.TotalPrice == null ? default :*/ b.TotalPrice,
+                            TotalPrice = /*b.TotalPrice == null ? default :*/ 0,
                         };
             var lst = join.ToList();
-            double totalprice = 0;
+            
             for (int i = 0; i < lst.Count(); i++)
             {
                 lst[i].TotalPrice = lst[i].Price * lst[i].Quantity;
@@ -72,6 +72,7 @@ namespace ProjectSEM3.Controllers
         {
 
            var query = dbcontext.Bills.Where(x => id.Contains(x.Id)).ToList();
+
             // to muon update cai list nay 
             var data = from b in query
                        select new Bill
@@ -81,7 +82,7 @@ namespace ProjectSEM3.Controllers
                            Id = b.Id,
                            ProductId = b.Id,
                            Quantity = b.Quantity,
-                           TotalPrice = b.TotalPrice,
+                           
                            Status = StatusCart.StatusBill
                        };
            var list = data.ToList();
