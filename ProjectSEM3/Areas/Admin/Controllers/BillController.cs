@@ -25,9 +25,11 @@ namespace ProjectSEM3.Areas.Admin.Controllers
             var join = from pro in products
                        join b in data
                        on pro.Id equals b.ProductId
+                       /* into gr1
+                        from b in gr1.DefaultIfEmpty()*/
                        join cus in customers
                        on b.CustomerId equals cus.Id
-                       /*into gr from b in gr.DefaultIfEmpty()*/
+                       /*into gr from cus in gr.DefaultIfEmpty()*/
                        select new ListCartDTO
                        {
                            Id = /*b.Id == null ? default :*/ b.Id,
@@ -40,7 +42,7 @@ namespace ProjectSEM3.Areas.Admin.Controllers
                            Status = b.Status /*== null ? StatusCart.StatusCart : StatusCart.StatusBill*/,
                            Images = pro.Images,
                            TotalPrice = /*b.TotalPrice == null ? default :*/ 0,
-                           CustomerName = cus.Name,
+                           CustomerName =  cus.Name,
                            Phone = cus.Phone,
                        };
             var list = join.Where(x => x.Status == StatusCart.StatusBill).ToList();
