@@ -43,7 +43,7 @@ namespace ProjectSEM3.Areas.Admin.Controllers
                            CustomerName = cus.Name,
                            Phone = cus.Phone,
                        };
-            var list = join.Where(x => x.Status == StatusCart.StatusCart).ToList();
+            var list = join.Where(x => x.Status == StatusCart.StatusBill).ToList();
             
             
             for (int i = 0; i < list.Count(); i++)
