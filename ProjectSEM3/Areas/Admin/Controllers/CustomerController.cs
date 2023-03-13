@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProjectSEM3.DAL.Models.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,16 @@ namespace ProjectSEM3.Areas.Admin.Controllers
 {
     public class CustomerController : Controller
     {
+        private static Migrations dbcontext;
+        public CustomerController()
+        {
+            dbcontext = new Migrations();
+        }
         // GET: Admin/Customer
         public ActionResult Index()
         {
-            return View();
+            var data = dbcontext.Customers.ToList();
+            return View(data);
         }
     }
 }

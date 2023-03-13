@@ -80,7 +80,7 @@ namespace ProjectSEM3.Controllers
                            Created = b.Created,
                            CustomerId = b.CustomerId,
                            Id = b.Id,
-                           ProductId = b.Id,
+                           ProductId = b.ProductId,
                            Quantity = b.Quantity,
                            
                            Status = StatusCart.StatusBill
