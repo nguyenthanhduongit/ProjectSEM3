@@ -17,7 +17,9 @@ namespace ProjectSEM3.Dto
         public Guid ProductId { get; set; }
         public string ProductName { get; set; }
         public Guid CustomerId { get; set; }
+        public string CustomerName { get; set; } 
         public DateTime Created { get; set; }
         public StatusCart Status { get; set; }
+        public int Phone { get; set; }
     }
 }

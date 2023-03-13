@@ -80,7 +80,7 @@ namespace ProjectSEM3.Controllers
         public static List<Product> GetStatusProductNew()
         {
             var data = dbcontext.Products;
-            var list = data.Where(x => x.StatusProduct == StatusProduct.ProductNew).Take(3)e.ToList();
+            var list = data.Where(x => x.StatusProduct == StatusProduct.ProductNew).Take(3).ToList();
             return list;
         }
         public static List<Product> GetStatusProductRecently()
