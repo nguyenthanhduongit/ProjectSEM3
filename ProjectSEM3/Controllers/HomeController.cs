@@ -17,6 +17,7 @@ namespace ProjectSEM3.Controllers
         }
         public ActionResult Index()
         {
+            ViewBag.Name = Session["UserName"];
             return View();
         }
 
@@ -54,6 +55,10 @@ namespace ProjectSEM3.Controllers
         public ActionResult Register()
         {
             return View();
+        }
+        public ActionResult Logout() {
+            Session.Remove("UserName");
+            return RedirectToAction("Index");
         }
         [HttpPost]
         public ActionResult Register(Customer customer)

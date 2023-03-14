@@ -36,12 +36,15 @@ namespace ProjectSEM3.Areas.Admin.Controllers
         }
         public ActionResult Logout()
         {
+            Session.Remove("UserNameAdmin");
             return RedirectToAction("Login");
         }
         public ActionResult Register(User user)
         {
+            user.Id = Guid.NewGuid();
             if (ModelState.IsValid)
             {
+                
                 dbcontext.Users.Add(user);
                 dbcontext.SaveChanges();
                 return RedirectToAction("Login");
