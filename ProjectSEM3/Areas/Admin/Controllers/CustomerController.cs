@@ -20,5 +20,12 @@ namespace ProjectSEM3.Areas.Admin.Controllers
             var data = dbcontext.Customers.ToList();
             return View(data);
         }
+        public ActionResult Delete(Guid id)
+        {
+            var data = dbcontext.Customers.Find(id);
+            dbcontext.Customers.Remove(data);
+            dbcontext.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }

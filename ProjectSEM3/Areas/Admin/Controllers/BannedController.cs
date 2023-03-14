@@ -3,6 +3,7 @@ using ProjectSEM3.DLL.IRepository;
 using ProjectSEM3.DLL.Repository;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -13,9 +14,12 @@ namespace ProjectSEM3.Areas.Admin.Controllers
     public class BannedController : Controller
     {
         private static IBanned bannedService;
+        private static Migrations dbcontext;
+
         public BannedController()
         {
             bannedService = new BannedService();
+            dbcontext = new Migrations();
         }
         // GET: Admin/Banned
         public ActionResult Index()
@@ -63,6 +67,40 @@ namespace ProjectSEM3.Areas.Admin.Controllers
             }
             return View();
 
+        }
+        
+        public ActionResult Delete(Guid id)
+        {
+            var data = dbcontext.Banneds.Find(id);
+            dbcontext.Banneds.Remove(data);
+            dbcontext.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Update(Guid id)
+        {
+            var data = dbcontext.Banneds.Find(id);
+            return View(data);
+        }
+        [HttpPost]
+        public ActionResult Update(HttpPostedFileBase Images, Banned Banned)
+        {
+            if (ModelState.IsValid)
+            {
+                Banned.Images = Images.FileName;
+                
+                
+
+                if (Images != null)
+                {
+                    string path = Path.Combine(Server.MapPath("~/Areas/Uploand"), Path.GetFileName(Images.FileName));
+                    Images.SaveAs(path);
+
+                }
+                dbcontext.Banneds.AddOrUpdate(Banned);
+                dbcontext.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
     }
 }

@@ -4,6 +4,7 @@ using ProjectSEM3.DLL.Repository;
 using ProjectSEM3.Dto;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.IO;
 using System.Linq;
 using System.Web;
@@ -72,6 +73,49 @@ namespace ProjectSEM3.Areas.Admin.Controllers
 
 
            
+            return View();
+        }
+        public ActionResult Delete(Guid id)
+        {
+            var data = dbcontext.Products.Find(id);
+            dbcontext.Products.Remove(data);
+            dbcontext.SaveChanges();
+            return RedirectToAction("Index");
+        }
+        public ActionResult Update(Guid id)
+        {
+            var data = dbcontext.Products.Find(id);
+
+            return View(data);
+        }
+        [HttpPost]
+        public ActionResult Update(HttpPostedFileBase Images, Product product)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    product.Images = Images.FileName;
+                    
+                    if (Images != null)
+                    {
+                        string path = Path.Combine(Server.MapPath("~/Areas/Uploand"), Path.GetFileName(Images.FileName));
+                        Images.SaveAs(path);
+
+                    }
+
+                    dbcontext.Products.AddOrUpdate(product);
+                    dbcontext.SaveChanges();
+                    return RedirectToAction("Index");
+
+                }
+                
+            }
+            catch (Exception e)
+            {
+
+                ViewBag.FileStatus = e.Message;
+            }
             return View();
         }
     }
