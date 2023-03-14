@@ -1,5 +1,7 @@
-﻿using ProjectSEM3.DAL.Models.Entity;
+﻿using Microsoft.Ajax.Utilities;
+using ProjectSEM3.DAL.Models.Entity;
 using ProjectSEM3.DAL.Models.Enum.EnumCart;
+using ProjectSEM3.Dto;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -55,6 +57,13 @@ namespace ProjectSEM3.Controllers
             dbcontext.SaveChanges();
             return RedirectToAction("Index");
 
+        }
+        public static List<Product> GetListProductInDetail()
+        {
+            var data = dbcontext.Products.Take(4).ToList();
+            
+            return data;
+           
         }
     }
 }
