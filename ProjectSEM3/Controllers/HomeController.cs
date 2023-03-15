@@ -104,12 +104,20 @@ namespace ProjectSEM3.Controllers
         }
         public ActionResult Profile()
         {
-
-            return View();
+            var username = Session["UserName"].ToString();
+            var data = dbcontext.Customers.FirstOrDefault(x => x.UserName.ToLower().Trim() == username.ToLower().Trim());
+            return View(data);
         }
         [HttpPost]
         public ActionResult Profile(Customer customer)
         {
+            customer.UserName = Session["UserName"].ToString();
+            if (ModelState.IsValid)
+            {
+                dbcontext.Customers.AddOrUpdate(customer);
+                dbcontext.SaveChanges();
+                return RedirectToAction("Profile");
+            }
             return View();
         }
         public ActionResult ChangePassword()
