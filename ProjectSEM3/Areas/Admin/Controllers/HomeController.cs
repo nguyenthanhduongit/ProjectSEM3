@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 
 namespace ProjectSEM3.Areas.Admin.Controllers
 {
@@ -16,6 +17,10 @@ namespace ProjectSEM3.Areas.Admin.Controllers
         }
         // GET: Admin/Home
         public ActionResult Index()
+        {
+            return View();
+        }
+        public ActionResult Login()
         {
             return View();
         }
@@ -39,6 +44,11 @@ namespace ProjectSEM3.Areas.Admin.Controllers
             Session.Remove("UserNameAdmin");
             return RedirectToAction("Login");
         }
+        public ActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
         public ActionResult Register(User user)
         {
             user.Id = Guid.NewGuid();
