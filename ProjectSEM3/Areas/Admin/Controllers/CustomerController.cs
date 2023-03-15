@@ -1,4 +1,5 @@
 ﻿using ProjectSEM3.DAL.Models.Entity;
+using ProjectSEM3.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,16 @@ namespace ProjectSEM3.Areas.Admin.Controllers
             dbcontext = new Migrations();
         }
         // GET: Admin/Customer
-        public ActionResult Index()
+        public ActionResult Index(SearchCustomerDTO param, int page = 1)
         {
-            var data = dbcontext.Customers.ToList();
-            return View(data);
+            int pageSize = 5;
+            var data = dbcontext.Customers.AsEnumerable();
+            if (!String.IsNullOrEmpty(param.Name))
+            {
+                data = data.Where(x => x.Name.Trim().ToLower().Contains(param.Name.Trim().ToLower()));
+            }
+            ViewBag.totalPage = Math.Ceiling((decimal)data.Count() / (decimal)pageSize);
+            return View(data.Skip((page - 1) * pageSize).Take(pageSize));
         }
         public ActionResult Delete(Guid id)
         {

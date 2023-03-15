@@ -22,15 +22,14 @@ namespace ProjectSEM3.Areas.Admin.Controllers
         // GET: Admin/Product
         public ActionResult Index(SearchProductDTO param, int page = 1)
         {
-            int pagesize = 1;
-          var data =  dbcontext.Products.AsEnumerable();
+            int pageSize = 5;
+            var data = dbcontext.Products.AsEnumerable();
             if (!String.IsNullOrEmpty(param.Name))
             {
-                data = data.Where(x => x.Name.Trim().ToLower().Contains(param.Name.Trim().ToLower()));
+                data = data.Where(x => x.Name.Trim().ToLower().Contains(param.Name.Trim().ToLower()) || x.Description.Trim().ToLower().Contains(param.Name.Trim().ToLower()));
             }
-            /*ViewBag.totalPage = Math.Ceiling((decimal)data.Count() / (decimal)pagesize);*/
-          
-            return View(data);
+            ViewBag.totalPage = Math.Ceiling((decimal)data.Count() / (decimal)pageSize);
+            return View(data.Skip((page - 1) * pageSize).Take(pageSize));
         }
         public ActionResult Create()
         {
@@ -38,11 +37,11 @@ namespace ProjectSEM3.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateInput(false)]
-        public ActionResult Create(HttpPostedFileBase Images,Product product)
+        public ActionResult Create(HttpPostedFileBase Images, Product product)
         {
-            
-                try
-                {
+
+            try
+            {
                 if (ModelState.IsValid)
                 {
                     product.Images = Images.FileName;
@@ -56,23 +55,23 @@ namespace ProjectSEM3.Areas.Admin.Controllers
                         Images.SaveAs(path);
 
                     }
-                    
+
                     if (data != null)
                     {
-                        
-                        return  RedirectToAction("Index");
+
+                        return RedirectToAction("Index");
                     }
-                     
+
                 }
-             }
-                catch (Exception e)
-                {
+            }
+            catch (Exception e)
+            {
 
-                    ViewBag.FileStatus = e.Message;
-                }
+                ViewBag.FileStatus = e.Message;
+            }
 
 
-           
+
             return View();
         }
         public ActionResult Delete(Guid id)
@@ -88,7 +87,7 @@ namespace ProjectSEM3.Areas.Admin.Controllers
 
             return View(data);
         }
-       
+
         [HttpPost]
         [ValidateInput(false)]
         public ActionResult Update(HttpPostedFileBase Images, Product product)
@@ -98,7 +97,7 @@ namespace ProjectSEM3.Areas.Admin.Controllers
                 if (ModelState.IsValid)
                 {
                     product.Images = Images.FileName;
-                    
+
                     if (Images != null)
                     {
                         string path = Path.Combine(Server.MapPath("~/Areas/Uploand"), Path.GetFileName(Images.FileName));
@@ -111,7 +110,7 @@ namespace ProjectSEM3.Areas.Admin.Controllers
                     return RedirectToAction("Index");
 
                 }
-                
+
             }
             catch (Exception e)
             {

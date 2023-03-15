@@ -19,7 +19,7 @@ namespace ProjectSEM3.Controllers
         }
         public ActionResult Index()
         {
-            ViewBag.Name = Session["UserName"];
+            ViewBag.Login = Session["UserName"];
             return View();
         }
 
@@ -49,7 +49,8 @@ namespace ProjectSEM3.Controllers
                 if (query.Password == Password) {
                     Session["UserName"] = Username;
                     return RedirectToAction("Index");
-                } 
+                }
+                ViewBag.Login = Session["UserName"];
 
             }
             return View();

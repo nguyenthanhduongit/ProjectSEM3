@@ -76,21 +76,32 @@
                                         @Html.DisplayFor(modelItem => item.price)
                                     </td>
                                     <td>
-                                        <button class="btn-info">@Html.ActionLink("Update", "Update", new { id = item.Id }, new { @class = "btn-create" })</button> 
-                                        <button class="btn-success"> @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn-create" })</button> 
-                                        <button class="btn-danger">@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn-create" })</button> 
+                                        <button class="btn-info">@Html.ActionLink("Update", "Update", new { id = item.Id }, new { @class = "btn-create" })</button>
+                                        <button class="btn-success"> @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "btn-create" })</button>
+                                        <button class="btn-danger">@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn-create" })</button>
                                     </td>
                                 </tr>
                             }
 
                         </table>
+
                     </div>
                     <!-- /.card-body -->
+                    <div class="card-tools">
+                        <ul class="pagination pagination-sm float-right">
+                            @for (int i = 1; i <= ViewBag.totalPage; i++)
+                            {
+                                <li class="page-item"><a class="page-link" href="@Url.Action("Index",new { page = i})">@i</a></li>
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
             <!-- /.col -->
+            
         </div>
         <!-- /.row -->
+        
     </div>
     <!-- /.container-fluid -->
 </section>

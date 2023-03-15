@@ -68,7 +68,7 @@
                                     <th>
                                         @Html.DisplayNameFor(model => model.Phone)
                                     </th>
-                                    
+
                                 </tr>
                                 @foreach (var item in Model)
                                 {
@@ -97,13 +97,21 @@
                                             0 @Html.DisplayFor(modelItem => item.Phone)
                                         </td>
 
-                                       
+
                                     </tr>
                                 }
 
                             </table>
                         </div>
                         <!-- /.card-body -->
+                        <div class="card-tools">
+                            <ul class="pagination pagination-sm float-right">
+                                @for (int i = 1; i <= ViewBag.totalPage; i++)
+                                {
+                                    <li class="page-item"><a class="page-link" href="@Url.Action("Index",new { page = i})">@i</a></li>
+                                }
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <!-- /.col -->

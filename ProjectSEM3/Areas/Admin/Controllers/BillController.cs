@@ -17,9 +17,10 @@ namespace ProjectSEM3.Areas.Admin.Controllers
             dbcontext = new Migrations();
         }
         // GET: Admin/Bill
-        public ActionResult Index()
+        public ActionResult Index(SearchBillDTO param, int page = 1)
         {
-           var data = dbcontext.Bills.ToList();
+            int pageSize = 5;
+            var data = dbcontext.Bills.ToList();
             var products = dbcontext.Products.ToList();
             var customers = dbcontext.Customers.ToList();   
             var join = from pro in products
@@ -46,14 +47,18 @@ namespace ProjectSEM3.Areas.Admin.Controllers
                            Phone = cus.Phone,
                        };
             var list = join.Where(x => x.Status == StatusCart.StatusBill).ToList();
-            
-            
+           
             for (int i = 0; i < list.Count(); i++)
             {
                 list[i].TotalPrice = list[i].Price * list[i].Quantity;
             }
-           
-            return View(list);
+            if (!String.IsNullOrEmpty(param.ProductName))
+            {
+                list = list.Where(x => x.ProductName.Trim().ToLower().Contains(param.ProductName.Trim().ToLower()) || x.CustomerName.Trim().ToLower().Contains(param.ProductName.Trim().ToLower())).ToList();
+            }
+            ViewBag.totalPage = Math.Ceiling((decimal)list.Count() / (decimal)pageSize);
+            return View(list.Skip((page - 1) * pageSize).Take(pageSize));
+            //return View(list);
         }
         
     }

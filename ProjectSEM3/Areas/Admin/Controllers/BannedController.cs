@@ -22,10 +22,12 @@ namespace ProjectSEM3.Areas.Admin.Controllers
             dbcontext = new Migrations();
         }
         // GET: Admin/Banned
-        public ActionResult Index()
+        public ActionResult Index(int page = 1)
         {
+            int pageSize = 1;
             var list = bannedService.Getlist();
-            return View(list);
+            ViewBag.totalPage = Math.Ceiling((decimal)list.Count() / (decimal)pageSize);
+            return View(list.Skip((page - 1) * pageSize).Take(pageSize));
         }
         public ActionResult Create() {
             return View();

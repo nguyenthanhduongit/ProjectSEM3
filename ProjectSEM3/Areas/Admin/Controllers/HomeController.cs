@@ -20,6 +20,11 @@ namespace ProjectSEM3.Areas.Admin.Controllers
         // GET: Admin/Home
         public ActionResult Index()
         {
+            if (Session["UserNameAdmin"] == null )
+            {
+                return RedirectToAction("Login");
+            }
+            ViewBag.LoginAdmin = Session["UserNameAdmin"];
             return View();
         }
         public ActionResult Login()
@@ -35,6 +40,7 @@ namespace ProjectSEM3.Areas.Admin.Controllers
                 if (query.Password == Password)
                 {
                     Session["UserNameAdmin"] = UserName;
+                    ViewBag.LoginAdmin = Session["UserNameAdmin"];
                     return RedirectToAction("Index");
                 }
 
