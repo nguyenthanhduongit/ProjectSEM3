@@ -1,7 +1,9 @@
 ﻿using ProjectSEM3.DAL.Models.Entity;
 using ProjectSEM3.DAL.Models.Enum.EnumCart;
+using ProjectSEM3.Dto;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -99,6 +101,33 @@ namespace ProjectSEM3.Controllers
             var data = dbcontext.Products.ToList();
             var list = data.Where(x => x.StatusProduct == StatusProduct.ProductSeller).Take(3).ToList();
             return list;
+        }
+        public ActionResult Profile()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Profile(Customer customer)
+        {
+            return View();
+        }
+        public ActionResult ChangePassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ChangePassword(ForgotPasswordDTO param) {
+            var data = dbcontext.Customers.FirstOrDefault(x => x.UserName.Trim().ToLower() == param.UserName.ToLower().Trim());
+            if (data != null)
+            {
+                data.Password = param.PasswordNew;
+                dbcontext.Customers.AddOrUpdate(data);
+                dbcontext.SaveChanges();
+                return RedirectToAction("Login");
+            }
+           
+            return View();
         }
     }
 }
