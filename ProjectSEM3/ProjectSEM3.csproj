@@ -139,7 +139,11 @@
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Dto\ForgotPasswordDTO.cs" />
     <Compile Include="Dto\ListCartDTO.cs" />
+    <Compile Include="Dto\SearchBannedDTO.cs" />
+    <Compile Include="Dto\SearchBillDTO.cs" />
+    <Compile Include="Dto\SearchCustomerDTO.cs" />
     <Compile Include="Dto\SearchProductDTO.cs" />
+    <Compile Include="Dto\SearchUserDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
