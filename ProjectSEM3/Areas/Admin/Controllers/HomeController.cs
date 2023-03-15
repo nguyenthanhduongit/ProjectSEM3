@@ -1,6 +1,8 @@
 ﻿using ProjectSEM3.DAL.Models.Entity;
+using ProjectSEM3.Dto;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -61,6 +63,28 @@ namespace ProjectSEM3.Areas.Admin.Controllers
             }
             return View();  
            
+        }
+        public ActionResult ForgotPassword() { 
+        return View();
+        }
+        [HttpPost]
+        public ActionResult ForgotPassword(ForgotPasswordDTO param)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = dbcontext.Users.FirstOrDefault(x => x.Name.ToLower().Trim().Contains(param.UserName.ToLower().Trim()));
+                if (user != null) {
+                    if (param.Password == user.Password)
+                    {
+                        user.Password = param.PasswordNew;
+                        dbcontext.Users.AddOrUpdate(user);
+                        dbcontext.SaveChanges();
+                        return RedirectToAction("Login");
+                    }
+                }
+                return View();
+            }
+            return View();
         }
     }
 }

@@ -88,7 +88,9 @@ namespace ProjectSEM3.Areas.Admin.Controllers
 
             return View(data);
         }
+       
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Update(HttpPostedFileBase Images, Product product)
         {
             try
